@@ -157,13 +157,17 @@ public class TetrisView {
         //timeline structures the animation, and speed between application "ticks"
         timeline = new Timeline(new KeyFrame(Duration.seconds(0.25), e -> updateBoard()));
         timeline.setCycleCount(Timeline.INDEFINITE);
+        new Mode(this);//test
         timeline.play();
 
         //configure this such that you start a new game when the user hits the newButton
         //Make sure to return the focus to the borderPane once you're done!
         newButton.setOnAction(e -> {
             model.newGame();
+            timeline.stop();
             paused = false;
+            new Mode(this); //test
+            timeline.play();
             borderPane.requestFocus();
         });
 
