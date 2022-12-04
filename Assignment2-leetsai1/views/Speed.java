@@ -1,6 +1,6 @@
 package views;
 /*
- * Class Speed.  A Speed will be used to set up falling speed of tetris
+ * Class Speed.  A Speed will be used to set up falling speed of tetris pieces
  * It implements the Visitable interface
  */
 
