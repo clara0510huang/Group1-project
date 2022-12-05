@@ -1,8 +1,6 @@
 package views;
 
-import javafx.scene.paint.Paint;
 import model.TetrisModel;
-import views.Mode;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -32,10 +30,9 @@ import javafx.util.Duration;
 public class TetrisView {
 
     TetrisModel model; //reference to model
-    Mode mode;
     Stage stage;
 
-    Button startButton, stopButton, loadButton, saveButton, newButton, modeButton; //buttons for functions
+    Button startButton, stopButton, loadButton, saveButton, newButton; //buttons for functions
     Label scoreLabel = new Label("");
     Label gameModeLabel = new Label("");
 
@@ -49,8 +46,6 @@ public class TetrisView {
     int pieceWidth = 20; //width of block on display
     private double width; //height and width of canvas
     private double height;
-
-    private boolean curr = true;
 
     /**
      * Constructor
@@ -89,7 +84,7 @@ public class TetrisView {
         gameModeLabel.setText("Player is: Human");
         gameModeLabel.setMinWidth(250);
         gameModeLabel.setFont(new Font(20));
-        //gameModeLabel.setStyle("-fx-text-fill: #e8e6e3");
+        gameModeLabel.setStyle("-fx-text-fill: #e8e6e3");
 
         final ToggleGroup toggleGroup = new ToggleGroup();
 
@@ -98,60 +93,50 @@ public class TetrisView {
         pilotButtonHuman.setSelected(true);
         pilotButtonHuman.setUserData(Color.SALMON);
         pilotButtonHuman.setFont(new Font(16));
-        pilotButtonHuman.setStyle("-fx-text-fill: #9575cd");
-
+        pilotButtonHuman.setStyle("-fx-text-fill: #e8e6e3");
 
         RadioButton pilotButtonComputer = new RadioButton("Computer (Default)");
         pilotButtonComputer.setToggleGroup(toggleGroup);
         pilotButtonComputer.setUserData(Color.SALMON);
         pilotButtonComputer.setFont(new Font(16));
-        pilotButtonComputer.setStyle("-fx-text-fill: #9575cd");
+        pilotButtonComputer.setStyle("-fx-text-fill: #e8e6e3");
 
         scoreLabel.setText("Score is: 0");
         scoreLabel.setFont(new Font(20));
-        //scoreLabel.setStyle("-fx-text-fill: #e8e6e3");
+        scoreLabel.setStyle("-fx-text-fill: #e8e6e3");
 
         //add buttons
         startButton = new Button("Start");
         startButton.setId("Start");
         startButton.setPrefSize(150, 50);
         startButton.setFont(new Font(12));
-        //startButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
+        startButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
         stopButton = new Button("Stop");
         stopButton.setId("Start");
         stopButton.setPrefSize(150, 50);
         stopButton.setFont(new Font(12));
-        //stopButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
+        stopButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
         saveButton = new Button("Save");
         saveButton.setId("Save");
         saveButton.setPrefSize(150, 50);
         saveButton.setFont(new Font(12));
-        //saveButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
+        saveButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
         loadButton = new Button("Load");
         loadButton.setId("Load");
         loadButton.setPrefSize(150, 50);
         loadButton.setFont(new Font(12));
-        //loadButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
+        loadButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
         newButton = new Button("New Game");
         newButton.setId("New");
         newButton.setPrefSize(150, 50);
         newButton.setFont(new Font(12));
-        //newButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
+        newButton.setStyle("-fx-background-color: #17871b; -fx-text-fill: white;");
 
-        modeButton = new Button("Change Mode");
-        modeButton.setId("Mode");
-        modeButton.setPrefSize(150, 50);
-        modeButton.setFont(new Font(12));
-
-        Mode setmode = new Mode(new lightMode());
-        setmode.setMode(this);
-        curr = false;
-
-        HBox controls = new HBox(20, saveButton, loadButton, newButton, startButton, stopButton, modeButton);
+        HBox controls = new HBox(20, saveButton, loadButton, newButton, startButton, stopButton);
         controls.setPadding(new Insets(20, 20, 20, 20));
         controls.setAlignment(Pos.CENTER);
 
@@ -216,22 +201,6 @@ public class TetrisView {
             borderPane.requestFocus();
         });
 
-        modeButton.setOnAction(e -> {
-            if (curr){
-                curr = false;
-                Mode light = new Mode(new lightMode());
-                light.setMode(this);
-                paintBoard();
-                borderPane.requestFocus();
-            } else {
-                curr = true;
-                Mode dark = new Mode(new darkMode());
-                dark.setMode(this);
-                paintBoard();
-                borderPane.requestFocus();
-            }
-        });
-
         //configure this such that you adjust the speed of the timeline to a value that
         //ranges between 0 and 3 times the default rate per model tick.  Make sure to return the
         //focus to the borderPane once you're done!
@@ -254,17 +223,13 @@ public class TetrisView {
                 TetrisModel.MoveType verb = TetrisModel.MoveType.DOWN;
                 if (k.getCode() == KeyCode.DOWN){
                     verb = TetrisModel.MoveType.DROP;
-                } else if (k.getCode() == KeyCode.D) {
-                    verb = TetrisModel.MoveType.ROTATE_PREV;
                 } else if (k.getCode() == KeyCode.A) {
-                    verb = TetrisModel.MoveType.ROTATE_NEXT;
+                    verb = TetrisModel.MoveType.ROTATE;
                 } else if (k.getCode() == KeyCode.LEFT) {
                     verb = TetrisModel.MoveType.RIGHT;
                 }else if (k.getCode() == KeyCode.RIGHT) {
                     verb = TetrisModel.MoveType.LEFT;
-                }
-                model.modelTick(verb);
-                borderPane.requestFocus();
+                } model.modelTick(verb);
             }
         });
 
@@ -338,13 +303,8 @@ public class TetrisView {
     public void paintBoard() {
 
         // Draw a rectangle around the whole screen
-        if (curr){
-            gc.setStroke(Paint.valueOf("#3c3943"));
-            gc.setFill(Paint.valueOf("#3c3943"));
-        } else {
-            gc.setStroke(Paint.valueOf("#e4e5f1"));
-            gc.setFill(Paint.valueOf("#e4e5f1"));
-        }
+        gc.setStroke(Color.GREEN);
+        gc.setFill(Color.GREEN);
         gc.fillRect(0, 0, this.width-1, this.height-1);
 
         // Draw the line separating the top area on the screen
@@ -366,15 +326,8 @@ public class TetrisView {
             for (y=0; y<yHeight; y++) {
                 if (this.model.getBoard().getGrid(x, y)) {
                     gc.setFill(Color.RED);
-                    if (curr){
-                        //gc.setFill(Paint.valueOf("#e4e5f1"));
-                        gc.fillRect(left+1, yPixel(y)+1, dx, dy);
-                        gc.setFill(Paint.valueOf("#3c3943"));
-                    } else {
-                        //gc.setFill(Paint.valueOf("#9575cd"));
-                        gc.fillRect(left+1, yPixel(y)+1, dx, dy);
-                        gc.setFill(Paint.valueOf("#e4e5f1"));
-                    }
+                    gc.fillRect(left+1, yPixel(y)+1, dx, dy);
+                    gc.setFill(Color.GREEN);
                 }
             }
         }
