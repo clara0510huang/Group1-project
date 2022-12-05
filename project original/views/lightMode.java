@@ -4,7 +4,7 @@ package views;
  * The class to set the UI in light mode.
  */
 public class lightMode implements IMode{
-    
+
     /**
      * Set the colour of the button, font, background to light mode.
      *
