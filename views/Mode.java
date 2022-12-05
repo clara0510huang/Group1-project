@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.BorderPane;
 
 /**
-* 
+* Mode class.
 */
 public class Mode {
     /**
