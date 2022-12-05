@@ -1,7 +1,15 @@
 package views;
 
+/**    
+* The class to set the UI in dark mode.
+*/
 public class darkMode implements IMode{
-
+    
+    /**
+    * Set the colour of the button, font, background to dark mode.
+    *
+    * @param view is the Tetris view.
+    */
     @Override
     public void setMode(TetrisView view){
         view.borderPane.setStyle("-fx-background-color: #121212;");
