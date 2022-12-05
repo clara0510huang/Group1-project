@@ -2,6 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * Counterclockwise
+ *
+ * A class to make a Tetris Piece rotate 90 in counterclockwise.
+ */
 public class CounterClockwise implements IRotation{
     @Override
     public TetrisPiece computeNextRotation(TetrisPiece piece) {
