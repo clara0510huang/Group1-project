@@ -221,15 +221,19 @@ public class TetrisView {
             public void handle(KeyEvent k) {
                 //TO DO
                 TetrisModel.MoveType verb = TetrisModel.MoveType.DOWN;
-                if (k.getCode() == KeyCode.DOWN){
+                if (k.getCode() == KeyCode.DOWN) {
                     verb = TetrisModel.MoveType.DROP;
+                } else if (k.getCode() == KeyCode.D) {
+                    verb = TetrisModel.MoveType.ROTATE_PREV;
                 } else if (k.getCode() == KeyCode.A) {
-                    verb = TetrisModel.MoveType.ROTATE;
+                    verb = TetrisModel.MoveType.ROTATE_NEXT;
                 } else if (k.getCode() == KeyCode.LEFT) {
                     verb = TetrisModel.MoveType.RIGHT;
-                }else if (k.getCode() == KeyCode.RIGHT) {
+                } else if (k.getCode() == KeyCode.RIGHT) {
                     verb = TetrisModel.MoveType.LEFT;
-                } model.modelTick(verb);
+                }
+                model.modelTick(verb);
+                borderPane.requestFocus();
             }
         });
 
