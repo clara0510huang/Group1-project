@@ -254,9 +254,9 @@ public class TetrisView {
                 } else if (k.getCode() == KeyCode.A) {
                     verb = TetrisModel.MoveType.ROTATE_NEXT;
                 } else if (k.getCode() == KeyCode.LEFT) {
-                    verb = TetrisModel.MoveType.LEFT;
-                } else if (k.getCode() == KeyCode.RIGHT) {
                     verb = TetrisModel.MoveType.RIGHT;
+                } else if (k.getCode() == KeyCode.RIGHT) {
+                    verb = TetrisModel.MoveType.LEFT;
                 } else if (k.getCode() == KeyCode.S) {
                     verb = TetrisModel.MoveType.SKIP;
                 }
