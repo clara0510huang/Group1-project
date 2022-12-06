@@ -1,15 +1,14 @@
 package views;
 
 import model.TetrisModel;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.*;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -20,6 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.TetrisPiece;
+import model.TetrisPoint;
 
 
 /**
@@ -39,6 +40,8 @@ public class TetrisView {
     BorderPane borderPane;
     Canvas canvas;
     GraphicsContext gc; //the graphics context will be linked to the canvas
+
+    GraphicsContext nc;// the next viewer
 
     Boolean paused;
     Timeline timeline;
@@ -76,6 +79,7 @@ public class TetrisView {
         canvas = new Canvas(this.width, this.height);
         canvas.setId("Canvas");
         gc = canvas.getGraphicsContext2D();
+
 
         //labels
         gameModeLabel.setId("GameModeLabel");
@@ -152,6 +156,24 @@ public class TetrisView {
         scoreBox.setPadding(new Insets(20, 20, 20, 20));
         vBox.setAlignment(Pos.TOP_CENTER);
 
+        // next piece view
+        Canvas newpicecanva = new Canvas();
+        int maxh = 0;
+        int maxw = 0;
+        for(TetrisPiece pieces: TetrisPiece.getPieces()){
+            if(pieces.getHeight() > maxh){
+            maxh = pieces.getHeight();}
+            if(pieces.getWidth() > maxw){
+                maxw = pieces.getWidth();
+            }
+        }
+        newpicecanva.setHeight(yPixel(this.model.getBoard().getHeight() - maxh - 1) * 3);
+        newpicecanva.setWidth(pieceWidth*maxw+10);
+        newpicecanva.setId("next");
+        nc = newpicecanva.getGraphicsContext2D();
+
+
+
         toggleGroup.selectedToggleProperty().addListener((observable, oldVal, newVal) -> swapPilot(newVal));
 
         //timeline structures the animation, and speed between application "ticks"
@@ -225,7 +247,7 @@ public class TetrisView {
             public void handle(KeyEvent k) {
                 //TO DO
                 TetrisModel.MoveType verb = TetrisModel.MoveType.DOWN;
-                if (k.getCode() == KeyCode.DOWN) {
+                if (k.getCode() == KeyCode.DOWN){
                     verb = TetrisModel.MoveType.DROP;
                 } else if (k.getCode() == KeyCode.D) {
                     verb = TetrisModel.MoveType.ROTATE_PREV;
@@ -235,6 +257,8 @@ public class TetrisView {
                     verb = TetrisModel.MoveType.RIGHT;
                 } else if (k.getCode() == KeyCode.RIGHT) {
                     verb = TetrisModel.MoveType.LEFT;
+                } else if (k.getCode() == KeyCode.S) {
+                    verb = TetrisModel.MoveType.SKIP;
                 }
                 model.modelTick(verb);
                 borderPane.requestFocus();
@@ -243,14 +267,17 @@ public class TetrisView {
 
         borderPane.setTop(controls);
         borderPane.setRight(scoreBox);
+        borderPane.setLeft(new BorderPane(newpicecanva));
         borderPane.setCenter(canvas);
         borderPane.setBottom(vBox);
+
+
 
         var scene = new Scene(borderPane, 800, 800);
         this.stage.setScene(scene);
         this.stage.show();
     }
-
+    
     /**
      * Get user selection of "autopilot" or human player
      *
@@ -274,6 +301,7 @@ public class TetrisView {
      */
     private void updateBoard() {
         if (this.paused != true) {
+            paintviewBoard();
             paintBoard();
             this.model.modelTick(TetrisModel.MoveType.DOWN);
             updateScore();
@@ -342,6 +370,47 @@ public class TetrisView {
 
     }
 
+    public void paintviewBoard() {
+
+        // Draw a rectangle around the whole screen
+        nc.setStroke(Color.GREEN);
+        nc.setFill(Color.GREEN);
+        int w = (int) (nc.getCanvas().getWidth());
+        nc.fillRect(10, 0, nc.getCanvas().getWidth() + 10, nc.getCanvas().getHeight());
+
+        // Draw the line separating the top area on the screen
+        int h  = (int) nc.getCanvas().getHeight();
+        nc.setStroke(Color.WHITE);
+        int nspacerY = (int) nc.getCanvas().getHeight() / 3 * 2;
+        nc.setLineDashes();
+        nc.strokeLine(10, nspacerY, w, nspacerY);
+        int size = (int) nc.getCanvas().getHeight() / 3;
+        nc.setLineDashes();
+        nc.strokeLine(10,size,w,size);
+        nc.setLineDashes(4);
+        nc.strokeLine(10,h - 1,w,h - 1);
+
+
+
+
+        // Factor a few things out to help the optimizer
+        final int nx = Math.round(dX() - 2);
+        final int ny = Math.round(dY() - 2);
+
+
+
+        for (int i = 0; i < this.model.NextPieces.size(); i++) {
+            TetrisPiece p = this.model.NextPieces.get(i);
+            for (TetrisPoint point : p.getBody()) {
+                nc.setFill(Color.RED);
+                nc.fillRect(xPixel(point.x)  - (this.width - w) +2, Math.abs( yPixel(point.y))-(((h+size*i))) + 5, nx, ny);
+                nc.setStroke(Color.GREEN);
+
+            }
+
+
+        }
+    }
     /**
      * Create the view to save a board to a file
      */
