@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-<<<<<<< HEAD
 <<<<<<< Updated upstream
   <component name="ProjectRootManager" version="2" project-jdk-name="openjdk-18" project-jdk-type="JavaSDK">
 =======
   <component name="ProjectRootManager">
 >>>>>>> Stashed changes
-=======
-  <component name="ProjectRootManager">
->>>>>>> 4085b450f0f22d54c8ae85af81798223302e1713
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
