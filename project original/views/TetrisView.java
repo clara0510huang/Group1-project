@@ -1,5 +1,6 @@
 package views;
 
+import model.TetrisModel;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
@@ -7,8 +8,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -18,7 +19,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.TetrisModel;
 import model.TetrisPiece;
 import model.TetrisPoint;
 
@@ -179,13 +179,17 @@ public class TetrisView {
         //timeline structures the animation, and speed between application "ticks"
         timeline = new Timeline(new KeyFrame(Duration.seconds(0.25), e -> updateBoard()));
         timeline.setCycleCount(Timeline.INDEFINITE);
+        new Mode(this);//test
         timeline.play();
 
         //configure this such that you start a new game when the user hits the newButton
         //Make sure to return the focus to the borderPane once you're done!
         newButton.setOnAction(e -> {
             model.newGame();
+            timeline.stop();
             paused = false;
+            new Mode(this); //test
+            timeline.play();
             borderPane.requestFocus();
         });
 
@@ -245,12 +249,14 @@ public class TetrisView {
                 TetrisModel.MoveType verb = TetrisModel.MoveType.DOWN;
                 if (k.getCode() == KeyCode.DOWN){
                     verb = TetrisModel.MoveType.DROP;
+                } else if (k.getCode() == KeyCode.D) {
+                    verb = TetrisModel.MoveType.ROTATE_PREV;
                 } else if (k.getCode() == KeyCode.A) {
-                    verb = TetrisModel.MoveType.ROTATE;
+                    verb = TetrisModel.MoveType.ROTATE_NEXT;
                 } else if (k.getCode() == KeyCode.LEFT) {
-                    verb = TetrisModel.MoveType.RIGHT;
-                }else if (k.getCode() == KeyCode.RIGHT) {
                     verb = TetrisModel.MoveType.LEFT;
+                } else if (k.getCode() == KeyCode.RIGHT) {
+                    verb = TetrisModel.MoveType.RIGHT;
                 } else if (k.getCode() == KeyCode.S) {
                     verb = TetrisModel.MoveType.SKIP;
                 }
@@ -260,10 +266,10 @@ public class TetrisView {
         });
 
         borderPane.setTop(controls);
-        borderPane.setBottom(vBox);
         borderPane.setRight(scoreBox);
         borderPane.setLeft(new BorderPane(newpicecanva));
         borderPane.setCenter(canvas);
+        borderPane.setBottom(vBox);
 
 
 
@@ -271,9 +277,7 @@ public class TetrisView {
         this.stage.setScene(scene);
         this.stage.show();
     }
-
-
-
+    
     /**
      * Get user selection of "autopilot" or human player
      *
