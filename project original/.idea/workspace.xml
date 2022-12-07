@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -40,6 +41,8 @@
       <change beforePath="$PROJECT_DIR$/out/production/Assignment2/views/lightMode.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/TetrisView.java" beforeDir="false" afterPath="$PROJECT_DIR$/views/TetrisView.java" afterDir="false" />
 
+=======
+>>>>>>> develop
   <component name="ChangeListManager">
     <list default="true" id="7cfa6368-38d0-47ea-8b7b-9562cf09a65f" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/model/Rotation.java" afterDir="false" />
@@ -86,7 +89,10 @@
       <change beforePath="$PROJECT_DIR$/out/production/Assignment2/views/SaveView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment2/views/SaveView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Assignment2/views/TetrisView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment2/views/TetrisView$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Assignment2/views/TetrisView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment2/views/TetrisView.class" afterDir="false" />
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,6 +114,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
 
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
@@ -136,6 +143,8 @@
       </method>
     </configuration>
 
+=======
+>>>>>>> develop
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -149,7 +158,10 @@
   }
 }</component>
   <component name="RunManager">
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
