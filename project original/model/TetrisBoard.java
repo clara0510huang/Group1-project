@@ -186,6 +186,7 @@ public class TetrisBoard implements Serializable {
             int grid_x = point.x + x;
             int grid_y = point.y + y;
             tetrisGrid[grid_x][grid_y] = true;
+            colorGrid[grid_x][grid_y] = piece.getColor();
         }
         for (TetrisPoint point : points) {
             makeHeightAndWidthArrays();
@@ -203,21 +204,54 @@ public class TetrisBoard implements Serializable {
      * @return number of rows cleared (useful for scoring)
      */
     public int clearRows() {
-        int cleared = 0;
-        for (int y = 0; y < height; y++) {
-            makeHeightAndWidthArrays();
-            if (getRowWidth(y) == width){
-                cleared += 1;
-
-                for (int x = 0; x < width; x++) {
-                    tetrisGrid[x][y] = false;
-                    if (y+1 < height){
-                        tetrisGrid[x][y] = tetrisGrid[x][y+1];
-                    }
-                }
+        int count = 0;
+        for(int i = 0; i < height; i++){
+            while (getRowWidth(i) == width){
+                count += 1;
+                clearline(i);
             }
-        } return cleared;
+        }
+        return count;
     }
+
+    private void clearline(int line){
+        for(int c = line; c < height - 1; c++){
+            rowCounts[c] = 0;
+            for(int j = 0; j<width; j++){
+                colorGrid[j][c] = colorGrid[j][c+ 1];
+                tetrisGrid[j][c] = tetrisGrid[j][c + 1];
+                if(tetrisGrid[j][c]){
+                    rowCounts[c] += 1;
+                }
+            }}for(int j = 0; j<width; j++){
+            tetrisGrid[j][height - 1] = false;
+            colorGrid[j][height - 1] = null;
+            rowCounts[height - 1] = 0;}
+    }
+    /*
+    public void deleteGrid(int x, int y){
+        tetrisGrid[x][y] = false;
+        rowCounts[x] -= 1;
+        colCounts[y] -= 1;
+        colorGrid[x][y] = null;
+    }
+
+    public void dropgird(ArrayList<Integer> l){
+        for(int j : l){
+
+        for(int c = 0; c < height - 1; c++){
+                colorGrid[j][c] = colorGrid[j][c+ 1];
+                tetrisGrid[j][c] = tetrisGrid[j][c + 1];
+                if(tetrisGrid[j][c]){
+                    rowCounts[c] += 1;
+                }
+            }}for(int j : l){
+            tetrisGrid[j][height - 1] = false;
+            colorGrid[j][height - 1] = null;
+            rowCounts[height - 1] = 0;}
+    }
+*/
+
 
     /**
      * Reverts the board to its state before up to one call to placePiece() and one to clearRows();

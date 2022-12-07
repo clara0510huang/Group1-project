@@ -1,5 +1,7 @@
 package model;
 
+import javafx.scene.paint.Color;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -34,6 +36,8 @@ public class TetrisPiece implements Serializable {
     public static final String S2_STR		= "0 1	1 1  1 0  2 0";
     public static final String SQUARE_STR	= "0 0  0 1  1 0  1 1";
     public static final String PYRAMID_STR	= "0 0  1 0  1 1  2 0";
+    private Color color;
+
 
     /**
      * Defines a new piece given a TetrisPoint[] array that makes up its body.
@@ -73,6 +77,58 @@ public class TetrisPiece implements Serializable {
             for (int i = 0; i < lowest.size(); i++){
                 lowestYVals[i] = lowest.get(key.get(i));
             }
+    }
+    /**
+     * random int from 0-255
+     */
+    private static int randint(){
+        int max = 255;
+        int min = 50;
+        int range = max - min + 1;
+
+        // generate random numbers within 1 to 10
+        int rand = (int)(Math.random() * range) + min;
+        return rand;
+    }
+    /**
+     * Avoid the similar color as the background
+     */
+    private static int rangreenint(){
+        int max = 255;
+        int min = 100;
+        int range = max - min + 1;
+
+        // generate random numbers within 1 to 10
+        int rand = (int)(Math.random() * range) + min;
+        return rand;
+    }
+    /**
+     * Assign color to the piece
+     */
+    public static void assigncolor(){
+        ArrayList<Color> n = new ArrayList<>();
+        n.add(Color.GREEN);
+        n.add(Color.WHITE);
+        int  l = model.TetrisPiece.getPieces().length;
+        model.TetrisPiece[] pieces = model.TetrisPiece.pieces;
+        Color c = Color.rgb(randint(),rangreenint(),randint(),1);
+        int i = 0;
+        while ( i < l) {
+            model.TetrisPiece p = pieces[i];
+            if(!n.contains(c)){
+                p.color = c;
+                c = Color.rgb(randint(),rangreenint(),randint(),1);
+                i += 1;
+            }else {
+                c = Color.rgb(randint(),rangreenint(),randint(),1);
+            }
+        }
+    }
+    /**
+     * return color of the piece
+     */
+    public Color getColor(){
+        return color;
     }
 
     /**

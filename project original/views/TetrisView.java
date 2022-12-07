@@ -24,6 +24,8 @@ import model.TetrisPiece;
 import model.TetrisPoint;
 import views.Mode;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 
 /**
  * Tetris View
@@ -207,11 +209,14 @@ public class TetrisView {
             timeline.play();
             borderPane.requestFocus();
         });
-
+        AtomicReference<Integer> time = new AtomicReference<>(0);//Avoid over stack
         //configure this such that you restart the game when the user hits the startButton
         //Make sure to return the focus to the borderPane once you're done!
         startButton.setOnAction(e -> {
             //TO DO!
+            borderPane.setRight(scoreBox);//restore game view
+            borderPane.setCenter(canvas);//restore canvas
+            time.set(0);// allow create deletionview run
             model.unpausedGame();
             paused = false;
             borderPane.requestFocus();
@@ -223,6 +228,12 @@ public class TetrisView {
             //TO DO!
             model.stopGame();
             paused = true;
+            borderPane.requestFocus();
+            // load deletion view with specific condition
+            int piecedrop = this.model.time;
+            if(time.get() == 0 && piecedrop > 1){
+                createDelectionView();
+                time.updateAndGet(v -> v + 1);}
             borderPane.requestFocus();
         });
 
@@ -445,7 +456,7 @@ public class TetrisView {
         for (int i = 0; i < this.model.NextPieces.size(); i++) {
             TetrisPiece p = this.model.NextPieces.get(i);
             for (TetrisPoint point : p.getBody()) {
-                nc.setFill(Color.RED);
+                Color c = this.model.getBoard().getGridColor(x,y);//Assign block with different color
                 nc.fillRect(xPixel(point.x)  - (this.width - w) +2, Math.abs( yPixel(point.y))-(((h+size*i))) + 5, nx, ny);
                 nc.setStroke(Color.GREEN);
 
@@ -466,6 +477,12 @@ public class TetrisView {
      */
     private void createLoadView(){
         LoadView loadView = new LoadView(this);
+    }
+    /**
+     * create the view to delete the block
+     */
+    private void createDelectionView(){
+        DelectionView delectionView = new DelectionView(this);
     }
 
 

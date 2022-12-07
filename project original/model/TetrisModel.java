@@ -29,6 +29,10 @@ public class TetrisModel implements Serializable {
 
     private boolean autoPilotMode; //are we in autopilot mode?
     protected TetrisPilot pilot;
+    public ArrayList<TetrisPoint> predeletionpair;
+    public ArrayList<TetrisPoint> deletionpair;
+    public ArrayList<ArrayList<TetrisPoint>> deletionpairs;
+    public int time = 0;
 
     public enum MoveType {
         ROTATE_NEXT,
@@ -48,6 +52,7 @@ public class TetrisModel implements Serializable {
     public TetrisModel() {
         board = new TetrisBoard(WIDTH, HEIGHT + BUFFERZONE);
         pieces = TetrisPiece.getPieces(); //initialize board and pieces
+        TetrisPiece.assigncolor();//Assign color for pieces
         autoPilotMode = false;
         gameOn = false;
         pilot = new AutoPilot();
@@ -148,6 +153,17 @@ public class TetrisModel implements Serializable {
 
         // commit things the way they are
         board.commit();
+        //to save all the action
+        if(time == 2){
+            deletionpair = findallgird();
+            deletionpairs.add(deletionpair);
+        } else if (time > 2) {
+            predeletionpair = deletionpair;
+            deletionpair = findallgird();
+            deletionpair.removeAll(predeletionpair);
+            deletionpairs.add(deletionpair);
+
+        }
         currentPiece = null;
 
         TetrisPiece piece = NextPieces.get(0);
@@ -363,6 +379,20 @@ public class TetrisModel implements Serializable {
             e.printStackTrace();
         }
     }
+    /**
+     * find all the gird in the list
+     */
+    public ArrayList<TetrisPoint> findallgird() {
+        ArrayList<TetrisPoint> lst = new ArrayList<>();
+        final int bWidth = this.getBoard().getWidth();
+        for(int x = 0; x < bWidth; x ++) {
+            final int yHeight = this.getBoard().getColumnHeight(x);
+            for(int y = 0; y < yHeight; y++){
+                if(this.getBoard().getGrid(x,y)){
+                    lst.add(new TetrisPoint(x,y));
+                }
+            }
+        }return lst;}}
 
     /**
      * Getter for autopilot state
