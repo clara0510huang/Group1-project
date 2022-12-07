@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7cfa6368-38d0-47ea-8b7b-9562cf09a65f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Group1-project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/Font.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/Mode(accessibility).java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/Speed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/VisionAccessibilityVisitor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/Visitable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/Visitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TetrisTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/TetrisTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/AutoPilot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/TetrisModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/TetrisModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment2/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment2/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment2/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/TetrisTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/boards/2022.11.20.15.26.37.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/model/Clockwise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment2/model/Clockwise.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/model/CounterClockwise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment2/model/CounterClockwise.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/model/Rotation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment2/model/Rotation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/views/IMode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/views/Mode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/views/TetrisView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment2/views/TetrisView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/views/TetrisView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment2/views/TetrisView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/views/darkMode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment2/views/lightMode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/TetrisView.java" beforeDir="false" afterPath="$PROJECT_DIR$/views/TetrisView.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/develop" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IWXHtxr4Y0fZcUaaCwVf3mcG50" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "full.screen.before.presentation.mode": "false",
+    "last_opened_file_path": "/Users/tsa1chen/Downloads/Group1-project/project original",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="Assignment2" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-18" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TetrisApp" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;/$PROJECT_DIR$/../../javafx-sdk-19/lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\huang\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7cfa6368-38d0-47ea-8b7b-9562cf09a65f" name="Changes" comment="" />
+      <created>1670298231355</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670298231355</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/group-project" />
+    </ignored-roots>
+  </component>
+</project>

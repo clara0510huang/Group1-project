@@ -1,3 +1,4 @@
+import model.TetrisPiece;
 import model.TetrisBoard;
 
 import org.junit.jupiter.api.Test;
@@ -18,14 +19,31 @@ public class TetrisTests {
     }
 
     @Test
-    void testMakeFastRotations() {
-        TetrisPiece piece = new TetrisPiece(TetrisPiece.S2_STR);
+    void testMakeFastRotations_prev() {
+        TetrisPiece piece = new TetrisPiece(TetrisPiece.S2_STR); // "0 1  1 1  1 0  2 0"
         piece = TetrisPiece.makeFastRotations(piece);
-        String[] target = {"0 0 0 1 1 1 1 2", "0 1 1 0 1 1 2 0", "0 0 0 1 1 1 1 2", "0 1 1 0 1 1 2 0"};
+        String[] target = {"1 2 1 1 0 1 0 0", "0 1 1 1 1 0 2 0", "1 2 1 1 0 1 0 0", "0 1 1 1 1 0 2 0"};
         int counter = 0;
         while(counter < 4){
             TetrisPiece np = new TetrisPiece(target[counter]);
-            piece = piece.fastRotation();
+            piece = piece.prevRotation();
+            System.out.println(piece);
+            assertTrue(np.equals(piece), "Error when testing piece equality");
+            counter++;
+        }
+
+    }
+
+    @Test
+    void testMakeFastRotations_next() {
+        TetrisPiece piece = new TetrisPiece(TetrisPiece.S2_STR); // "0 1  1 1  1 0  2 0"
+        piece = TetrisPiece.makeFastRotations(piece);
+        String[] target = {"0 0 0 1 1 1 1 2", "0 1 1 1 1 0 2 0", "0 0 0 1 1 1 1 2", "0 1 1 1 1 0 2 0"};
+        int counter = 0;
+        while(counter < 4){
+            TetrisPiece np = new TetrisPiece(target[counter]);
+            piece = piece.nextRotation();
+            System.out.println(piece);
             assertTrue(np.equals(piece), "Error when testing piece equality");
             counter++;
         }
