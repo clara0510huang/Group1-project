@@ -397,13 +397,12 @@ public class TetrisView {
             final int yHeight = this.model.getBoard().getColumnHeight(x);
             for (y=0; y<yHeight; y++) {
                 if (this.model.getBoard().getGrid(x, y)) {
-                    gc.setFill(Color.RED);
                     if (curr){
-                        //gc.setFill(Paint.valueOf("#e4e5f1"));
+                        gc.setFill(Paint.valueOf("#e4e5f1"));
                         gc.fillRect(left+1, yPixel(y)+1, dx, dy);
                         gc.setFill(Paint.valueOf("#3c3943"));
                     } else {
-                        //gc.setFill(Paint.valueOf("#9575cd"));
+                        gc.setFill(Paint.valueOf("#9575cd"));
                         gc.fillRect(left+1, yPixel(y)+1, dx, dy);
                         gc.setFill(Paint.valueOf("#e4e5f1"));
                     }
@@ -450,9 +449,15 @@ public class TetrisView {
         for (int i = 0; i < this.model.NextPieces.size(); i++) {
             TetrisPiece p = this.model.NextPieces.get(i);
             for (TetrisPoint point : p.getBody()) {
-                nc.setFill(Color.RED);
-                nc.fillRect(xPixel(point.x)  - (this.width - w) +2, Math.abs( yPixel(point.y))-(((h+size*i))) + 5, nx, ny);
-                nc.setStroke(Color.GREEN);
+                if (curr){
+                    nc.setFill(Paint.valueOf("#e4e5f1"));
+                    nc.fillRect(xPixel(point.x)  - (this.width - w) +2, Math.abs( yPixel(point.y))-(((h+size*i))) + 5, nx, ny);
+                    nc.setFill(Paint.valueOf("#3c3943"));
+                } else {
+                    nc.setFill(Paint.valueOf("#9575cd"));
+                    nc.fillRect(xPixel(point.x)  - (this.width - w) +2, Math.abs( yPixel(point.y))-(((h+size*i))) + 5, nx, ny);
+                    nc.setFill(Paint.valueOf("#e4e5f1"));
+                }
 
             }
 
