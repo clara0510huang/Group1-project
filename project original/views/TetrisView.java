@@ -399,6 +399,9 @@ public class TetrisView {
             for (y=0; y<yHeight; y++) {
                 if (this.model.getBoard().getGrid(x, y)) {
                     gc.setFill(Color.RED);
+                    
+                    
+                    
                     if (curr){
                         //gc.setFill(Paint.valueOf("#e4e5f1"));
                         gc.fillRect(left+1, yPixel(y)+1, dx, dy);
