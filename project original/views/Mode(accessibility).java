@@ -6,14 +6,14 @@ import java.util.Scanner;
  */
 
 
-public class Mode {
+public class ModeA {
 
     /*
      * Initializing mode object and receiving user inputs to determine following actions.
      */
 
 
-    public Mode(TetrisView view) {
+    public ModeA(TetrisView view) {
 
         Scanner obj = new Scanner(System.in);
 
