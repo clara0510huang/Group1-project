@@ -2,9 +2,6 @@ package views;
 
 import javafx.scene.paint.Paint;
 import model.TetrisModel;
-import views.Mode;
-
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
@@ -25,6 +22,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.TetrisPiece;
 import model.TetrisPoint;
+import views.Mode;
 
 
 /**
