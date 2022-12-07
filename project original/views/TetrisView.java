@@ -416,8 +416,13 @@ public class TetrisView {
     public void paintviewBoard() {
 
         // Draw a rectangle around the whole screen
-        nc.setStroke(Color.GREEN);
-        nc.setFill(Color.GREEN);
+        if (curr){
+            nc.setStroke(Paint.valueOf("#3c3943"));
+            nc.setFill(Paint.valueOf("#3c3943"));
+        } else {
+            nc.setStroke(Paint.valueOf("#e4e5f1"));
+            nc.setFill(Paint.valueOf("#e4e5f1"));
+        }
         int w = (int) (nc.getCanvas().getWidth());
         nc.fillRect(10, 0, nc.getCanvas().getWidth() + 10, nc.getCanvas().getHeight());
 
