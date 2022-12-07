@@ -203,20 +203,27 @@ public class TetrisBoard implements Serializable {
      * @return number of rows cleared (useful for scoring)
      */
     public int clearRows() {
-        int cleared = 0;
-        for (int y = 0; y < height; y++) {
-            makeHeightAndWidthArrays();
-            if (getRowWidth(y) == width){
-                cleared += 1;
-
-                for (int x = 0; x < width; x++) {
-                    tetrisGrid[x][y] = false;
-                    if (y+1 < height){
-                        tetrisGrid[x][y] = tetrisGrid[x][y+1];
-                    }
-                }
+        int count = 0;
+        for(int i = 0; i < height; i++){
+            while (getRowWidth(i) == width){
+                count += 1;
+                clearline(i);
             }
-        } return cleared;
+        }
+        return count;
+    }
+
+    private void clearline(int line){
+        for(int c = line; c < height - 1; c++){
+            rowCounts[c] = 0;
+            for(int j = 0; j<width; j++){
+                tetrisGrid[j][c] = tetrisGrid[j][c + 1];
+                if(tetrisGrid[j][c]){
+                    rowCounts[c] += 1;
+                }
+            }}for(int j = 0; j<width; j++){
+            tetrisGrid[j][height - 1] = false;
+            rowCounts[height - 1] = 0;}
     }
 
     /**
